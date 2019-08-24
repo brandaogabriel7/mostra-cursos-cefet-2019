@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MostraDeCursos2019</string>
+    <string name="programacao_title">Programação</string>
+    <string name="programacao_p1">A visitação do público aos Stands dos cursos será realizada entre os dias 11 (quarta feira) à 13 (sexta feira) de setembro de 2019, no ginásio do Campus I do CEFET-MG, situado na Av. Amazonas, 5253.</string>
+    <string name="programcao_p2">A entrada para o evento é preferencialmente pela Rua Alpes.</string>
+    <string name="programcao_p3">OBS.: Os grupos de visitantes que chegarem em ônibus ou van poderá estacionar na Rua Alpes, ao lado da portaria do CEFET-MG.</string>
+    <string name="programacao_subtitle1">Horários público individual:</string>
+    <string name="programacao_subtitle2">Horários visitação em grupos (escolas) – Opções:</string>
+    <string name="programacao_ul1_li1">Cursos Técnicos (08:30 às 11:30 e 13:30 às 19:00)</string>
+    <string name="programacao_ul1_li2">Graduação e Pós-Graduação (15:30 às 19:00)</string>
+    <string name="programacao_ul2_li1">09:00 às 10:00</string>
+    <string name="programacao_ul2_li2">10:00 às 11:00</string>
+    <string name="programacao_ul2_li3">13:30 às 15:00</string>
+    <string name="programacao_ul2_li4">15:00 às 17:00</string>
+    <string name="programacao_ul2_li5">17:00 às 19:00</string>
+
 </resources>
