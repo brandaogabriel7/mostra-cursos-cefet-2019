@@ -1,6 +1,7 @@
 package dataaccess.webservice
 
 import brandao.gabriel.mostradecursos2019.entity.Course
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,7 +12,7 @@ const val BASE_URL = "https://mostra-cursos-api.herokuapp.com"
 interface CourseService {
 
     @GET("courses")
-    fun getCourseList() : Call<ArrayList<Course>>
+    fun getCourseList() : Call<ResponseBody>
 
     companion object {
 
