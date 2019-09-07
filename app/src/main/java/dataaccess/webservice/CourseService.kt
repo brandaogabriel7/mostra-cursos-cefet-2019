@@ -12,7 +12,7 @@ const val BASE_URL = "https://mostra-cursos-api.herokuapp.com"
 interface CourseService {
 
     @GET("courses")
-    fun getCourseList() : Call<ResponseBody>
+    fun getCourseList() : Call<List<Course>>
 
     companion object {
 

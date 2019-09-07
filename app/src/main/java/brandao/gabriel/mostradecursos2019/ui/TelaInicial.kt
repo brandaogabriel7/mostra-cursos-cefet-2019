@@ -34,12 +34,12 @@ class TelaInicial : AppCompatActivity() {
     }
 
     fun loadCourses() {
-        CourseService().getCourseList().enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+        CourseService().getCourseList().enqueue(object : Callback<List<Course>> {
+            override fun onResponse(call: Call<List<Course>>, response: Response<List<Course>>) {
                 Toast.makeText(applicationContext, "aaaaa", Toast.LENGTH_LONG).show()
             }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+            override fun onFailure(call: Call<List<Course>>, t: Throwable) {
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
             }
 
