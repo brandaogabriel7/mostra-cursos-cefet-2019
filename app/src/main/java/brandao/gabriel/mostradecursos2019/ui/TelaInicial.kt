@@ -1,16 +1,15 @@
 package brandao.gabriel.mostradecursos2019.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import brandao.gabriel.mostradecursos2019.R
 import brandao.gabriel.mostradecursos2019.entity.Course
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import dataaccess.webservice.CourseService
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +17,7 @@ import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStreamReader
-
+import java.lang.StringBuilder
 
 
 class TelaInicial : AppCompatActivity() {
@@ -36,11 +35,11 @@ class TelaInicial : AppCompatActivity() {
     fun loadCourses() {
         CourseService().getCourseList().enqueue(object : Callback<List<Course>> {
             override fun onResponse(call: Call<List<Course>>, response: Response<List<Course>>) {
-                Toast.makeText(applicationContext, "aaaaa", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, saveToFile(response.body().toString()).toString(), Toast.LENGTH_LONG).show()
             }
 
             override fun onFailure(call: Call<List<Course>>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, loadFromFile(), Toast.LENGTH_LONG).show()
             }
 
         })
@@ -74,26 +73,31 @@ class TelaInicial : AppCompatActivity() {
         }
     }
 
-        fun saveToJSONFile(content: String) {
-        var fos: FileOutputStream? = openFileOutput(FILE_NAME, MODE_PRIVATE)
-
-        fos?.write(content.toByteArray())
-        Toast.makeText(this, "escreveu no arquivo", Toast.LENGTH_LONG).show()
+    fun saveToFile(data: String) {
+        var fos: FileOutputStream? = null
+        fos = openFileOutput(FILE_NAME, Context.MODE_PRIVATE)
+        fos.write(data.toByteArray())
+        Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME, Toast.LENGTH_LONG).show()
         fos?.close()
     }
 
-    fun loadFromJSONFile() : JsonObject {
-        val gson = Gson()
-        val fis: FileInputStream? = openFileInput(FILE_NAME)
-
+    fun loadFromFile(): String {
+        var fis: FileInputStream? = null
+        fis = openFileInput(FILE_NAME)
         val isr = InputStreamReader(fis)
         val br = BufferedReader(isr)
+        val sb = StringBuilder()
+        var text = br.readLine()
+        while(text != null) {
+            sb.append(text).append("\n")
+            text = br.readLine()
+        }
 
         fis?.close()
 
-        val course = gson.fromJson(br, JsonObject::class.java)
+        return sb.toString()
 
-        return course
+
     }
 
 }
