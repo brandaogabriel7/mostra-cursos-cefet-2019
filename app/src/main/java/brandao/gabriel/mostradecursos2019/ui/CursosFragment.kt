@@ -42,7 +42,9 @@ class CursosFragment : androidx.fragment.app.Fragment() {
     fun setupCoursesList() {
         var adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, coursesNames)
         listView?.adapter = adapter
-        listView.
+        for(i in 0..listView!!.childCount) {
+            (listView?.getChildAt(i) as View).setOnClickListener { // navigate to course activity }
+        }
     }
 
 }
