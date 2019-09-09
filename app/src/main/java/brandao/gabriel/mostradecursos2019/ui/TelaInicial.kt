@@ -7,6 +7,7 @@ import brandao.gabriel.mostradecursos2019.R
 import brandao.gabriel.mostradecursos2019.entity.Course
 import brandao.gabriel.mostradecursos2019.util.FileHandler
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
 import dataaccess.webservice.CourseService
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,7 +31,8 @@ class TelaInicial : AppCompatActivity() {
     fun loadCourses() {
         CourseService().getCourseList().enqueue(object : Callback<List<Course>> {
             override fun onResponse(call: Call<List<Course>>, response: Response<List<Course>>) {
-                Toast.makeText(applicationContext, FileHandler.saveToFile(this@TelaInicial, FILE_NAME, response.body().toString()).toString(), Toast.LENGTH_LONG).show()
+                val gson = Gson()
+                Toast.makeText(applicationContext, FileHandler.saveToFile(this@TelaInicial, FILE_NAME, gson.toJson(response.body())).toString(), Toast.LENGTH_LONG).show()
             }
 
             override fun onFailure(call: Call<List<Course>>, t: Throwable) {
