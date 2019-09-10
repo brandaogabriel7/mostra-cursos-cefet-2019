@@ -1,12 +1,18 @@
 package brandao.gabriel.mostradecursos2019.ui
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import brandao.gabriel.mostradecursos2019.R
 import brandao.gabriel.mostradecursos2019.entity.Course
 import com.google.gson.Gson
-import org.w3c.dom.Text
+import java.io.FileInputStream
+
 
 class CourseDescriptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +24,8 @@ class CourseDescriptionActivity : AppCompatActivity() {
     }
 
     fun setupCourseContent(course: Course) {
+        findViewById<ImageView>(R.id.course_img).setImageBitmap(loadImageBitmap(this, course.nome + ".jpg"))
+
         findViewById<TextView>(R.id.nom_curso).setText(course?.nome)
 
         for(linha in course!!.apresentacao) {
@@ -36,9 +44,9 @@ class CourseDescriptionActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.campo_atuacao_p).append(linha + "\n")
         }
 
-        for(linha in course!!.formasOferta) {
-            findViewById<TextView>(R.id.formas_oferta_p).append(linha + "\n")
-        }
+//        for(linha in course!!.formasOferta) {
+//            findViewById<TextView>(R.id.formas_oferta_p).append(linha + "\n")
+//        }
 
         if(course.campi!!.size > 1) findViewById<TextView>(R.id.campi_t).setText("Campi")
 
@@ -46,5 +54,20 @@ class CourseDescriptionActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.campi_p).append(linha + "\n")
         }
 
+    }
+
+    fun loadImageBitmap(context: Context, imageName: String): Bitmap? {
+        var bitmap: Bitmap? = null
+        val fiStream: FileInputStream
+        try {
+            fiStream = context.openFileInput(imageName)
+            bitmap = BitmapFactory.decodeStream(fiStream)
+            fiStream.close()
+        } catch (e: Exception) {
+            Log.d("saveImage", "Exception 3, Something went wrong!")
+            e.printStackTrace()
+        }
+
+        return bitmap
     }
 }
