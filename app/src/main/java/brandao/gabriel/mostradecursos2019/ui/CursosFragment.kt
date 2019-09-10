@@ -2,18 +2,17 @@ package brandao.gabriel.mostradecursos2019.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.Toast
 import brandao.gabriel.mostradecursos2019.R
 import brandao.gabriel.mostradecursos2019.entity.Course
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import brandao.gabriel.mostradecursos2019.util.FileHandler
 
 class CursosFragment : androidx.fragment.app.Fragment() {
 
@@ -35,7 +34,7 @@ class CursosFragment : androidx.fragment.app.Fragment() {
 
     fun getCourseObjects():ArrayList<Course> {
         val gson = Gson()
-        var coursesJSON = brandao.gabriel.mostradecursos2019.util.FileHandler.loadFromFile(this.context, TelaInicial.FILE_NAME)
+        var coursesJSON = FileHandler.loadFromFile(this.context, TelaInicial.FILE_NAME)
         val type = object: TypeToken<ArrayList<Course>>() {}.type
         println(coursesJSON)
 
