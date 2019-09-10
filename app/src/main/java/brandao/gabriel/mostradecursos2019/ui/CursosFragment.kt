@@ -45,7 +45,15 @@ class CursosFragment : androidx.fragment.app.Fragment() {
     fun setupCoursesList() {
         var adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, coursesNames)
         listView?.adapter = adapter
-        listView?.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long -> startActivity(Intent(context, CourseDescriptionActivity::class.java)) }
+        var intent = Intent(context, CourseDescriptionActivity::class.java)
+        listView?.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+            run {
+                val gson = Gson()
+                var course = gson.toJson(courses?.get(i))
+                intent.putExtra("COURSE", course)
+                startActivity(intent)
+            }
+        }
     }
 
 }
