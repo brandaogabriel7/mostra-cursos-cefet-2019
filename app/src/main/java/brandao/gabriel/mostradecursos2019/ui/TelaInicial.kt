@@ -75,6 +75,9 @@ class TelaInicial : AppCompatActivity() {
                 R.id.nav_cursos -> {
                     selectedFragment = CursosFragment()
                 }
+                R.id.nav_sobre -> {
+                    selectedFragment = SobreFragment()
+                }
                 else -> selectedFragment = ApresentacaoFragment()
             }
 
