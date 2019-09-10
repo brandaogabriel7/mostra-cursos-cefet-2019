@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import brandao.gabriel.mostradecursos2019.R
 import brandao.gabriel.mostradecursos2019.entity.Course
 import com.google.gson.Gson
@@ -43,11 +45,7 @@ class CursosFragment : androidx.fragment.app.Fragment() {
     fun setupCoursesList() {
         var adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, coursesNames)
         listView?.adapter = adapter
-        for(i in 0..listView!!.childCount) {
-            (listView?.getChildAt(i) as View).setOnClickListener {
-                startActivity(Intent(context, CourseDescriptionActivity::class.java))
-            }
-        }
+        listView?.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long -> startActivity(Intent(context, CourseDescriptionActivity::class.java)) }
     }
 
 }
