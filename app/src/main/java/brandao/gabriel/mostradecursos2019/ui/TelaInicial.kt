@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import brandao.gabriel.mostradecursos2019.R
 import brandao.gabriel.mostradecursos2019.entity.Course
 import brandao.gabriel.mostradecursos2019.util.FileHandler
@@ -25,6 +26,7 @@ class TelaInicial : AppCompatActivity() {
 
     companion object {
         val FILE_NAME = "courses.json"
+        var isListReady = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +41,10 @@ class TelaInicial : AppCompatActivity() {
         CourseService().getCourseList().enqueue(object : Callback<List<Course>> {
             override fun onResponse(call: Call<List<Course>>, response: Response<List<Course>>) {
                 val gson = Gson()
-                FileHandler.saveToFile(this@TelaInicial, FILE_NAME, gson.toJson(response.body())).toString()
-                val downloadImage = DownloadImage()
+                isListReady = FileHandler.saveToFile(this@TelaInicial, FILE_NAME, gson.toJson(response.body()))
                 println(response.body())
                 for(course in response.body()!!) {
+                    val downloadImage = DownloadImage()
                     downloadImage.imageName = course.nome + ".jpg"
                     downloadImage.execute(course.caminhoImagem)
                 }
@@ -63,7 +65,7 @@ class TelaInicial : AppCompatActivity() {
 
         bottomNav.setOnNavigationItemSelectedListener {
 
-            var selectedFragment: androidx.fragment.app.Fragment
+            var selectedFragment :Fragment = ApresentacaoFragment()
 
             when (it.itemId) {
                 R.id.nav_apresentacao -> {
@@ -73,7 +75,7 @@ class TelaInicial : AppCompatActivity() {
                     selectedFragment = ProgramacaoFragment()
                 }
                 R.id.nav_cursos -> {
-                    selectedFragment = CursosFragment()
+                    if(isListReady) selectedFragment = CursosFragment()
                 }
                 R.id.nav_sobre -> {
                     selectedFragment = SobreFragment()

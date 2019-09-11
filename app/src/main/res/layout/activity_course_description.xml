@@ -17,79 +17,111 @@
             <ImageView
                 android:id="@+id/course_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/nom_curso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Apresentação"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="Apresentação" />
 
             <TextView
                 android:id="@+id/apresentacao_p"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Objetivo do curso"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/objetivo_p"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Perfil do profissional"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/perfil_profissional_p"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Campo de atuação"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/campo_atuacao_p"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Formas de oferta"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/formas_oferta_p"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:id="@+id/campi_t"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Campus"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/campi_p"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp" />
 
         </LinearLayout>
 

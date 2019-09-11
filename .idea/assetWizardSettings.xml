@@ -51,6 +51,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="scalingPercent" value="114" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -61,7 +63,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="2f6a92" />
+                                      <entry key="backgroundColor" value="004c84" />
                                       <entry key="foregroundImage" value="$USER_HOME$/Downloads/ic_launcher.png" />
                                     </map>
                                   </option>

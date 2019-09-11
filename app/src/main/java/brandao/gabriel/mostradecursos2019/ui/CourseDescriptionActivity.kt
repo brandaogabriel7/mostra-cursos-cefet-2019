@@ -26,6 +26,7 @@ class CourseDescriptionActivity : AppCompatActivity() {
 
         val gson = Gson()
         var course = gson.fromJson(intent.getStringExtra("COURSE"), Course::class.java)
+        actionBar?.title = course.nome
         setupCourseContent(course)
     }
 
@@ -44,8 +45,6 @@ class CourseDescriptionActivity : AppCompatActivity() {
     fun setupCourseContent(course: Course) {
         findViewById<ImageView>(R.id.course_img).setImageBitmap(loadImageBitmap(this, course.nome + ".jpg"))
 
-        findViewById<TextView>(R.id.nom_curso).setText(course?.nome)
-
         for(linha in course!!.apresentacao) {
             findViewById<TextView>(R.id.apresentacao_p).append(linha + "\n")
         }
@@ -62,9 +61,9 @@ class CourseDescriptionActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.campo_atuacao_p).append(linha + "\n")
         }
 
-//        for(linha in course!!.formasOferta) {
-//            findViewById<TextView>(R.id.formas_oferta_p).append(linha + "\n")
-//        }
+        for(linha in course!!.formasOferta) {
+            findViewById<TextView>(R.id.formas_oferta_p).append(linha + "\n")
+        }
 
         if(course.campi!!.size > 1) findViewById<TextView>(R.id.campi_t).setText("Campi")
 

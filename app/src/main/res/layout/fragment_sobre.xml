@@ -8,8 +8,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/brands_image"
-        android:layout_width="421dp"
-        android:layout_height="349dp"
+        android:layout_width="403dp"
+        android:layout_height="278dp"
         android:adjustViewBounds="false"
         android:cropToPadding="true"
         android:padding="30dp"
@@ -24,10 +24,14 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Desenvolvido por Gabriel Silva Brandão, aluno do 3° ano do Curso Técnico Integrado em Informática, CEFET-MG, campus II."
+        android:padding="15dp"
+        android:text="Desenvolvido por Gabriel Silva Brandão, aluno do 3° ano do Curso Técnico Integrado em Informática, para a Mostra de Cursos do CEFET-MG BH 2019."
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brands_image" />
+        app:layout_constraintTop_toBottomOf="@+id/brands_image"
+        app:layout_constraintVertical_bias="0.283" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
