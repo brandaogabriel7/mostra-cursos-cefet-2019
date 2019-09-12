@@ -25,20 +25,25 @@ class CursosFragment : androidx.fragment.app.Fragment() {
         rootView = inflater.inflate(R.layout.fragment_cursos, container, false)
         listView = rootView?.findViewById(R.id.courses_list) as ListView
         courses = getCourseObjects()
-        for(course in courses!!) {
-            coursesNames.add(course.nome)
+        if(courses != null) {
+            for(course in courses!!) {
+                coursesNames.add(course.nome)
+            }
+            setupCoursesList()
         }
-        setupCoursesList()
         return rootView
     }
 
-    fun getCourseObjects():ArrayList<Course> {
+    fun getCourseObjects(): ArrayList<Course>? {
         val gson = Gson()
         var coursesJSON = FileHandler.loadFromFile(this.context, TelaInicial.FILE_NAME)
-        val type = object: TypeToken<ArrayList<Course>>() {}.type
-        println(coursesJSON)
+        if(coursesJSON != null) {
+            val type = object: TypeToken<ArrayList<Course>>() {}.type
+            println(coursesJSON)
 
-        return gson.fromJson(coursesJSON, type)
+            return gson.fromJson(coursesJSON, type)
+        }
+        else return null
     }
 
     fun setupCoursesList() {

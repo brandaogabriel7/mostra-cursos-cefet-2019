@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -42,16 +43,19 @@ class TelaInicial : AppCompatActivity() {
             override fun onResponse(call: Call<List<Course>>, response: Response<List<Course>>) {
                 val gson = Gson()
                 isListReady = FileHandler.saveToFile(this@TelaInicial, FILE_NAME, gson.toJson(response.body()))
-                println(response.body())
                 for(course in response.body()!!) {
                     val downloadImage = DownloadImage()
                     downloadImage.imageName = course.nome + ".jpg"
                     downloadImage.execute(course.caminhoImagem)
                 }
+                println("terminou")
             }
 
             override fun onFailure(call: Call<List<Course>>, t: Throwable) {
-                Toast.makeText(applicationContext, FileHandler.loadFromFile(this@TelaInicial, FILE_NAME), Toast.LENGTH_LONG).show()
+                if(FileHandler.loadFromFile(this@TelaInicial, FILE_NAME) == null) {
+                    Toast.makeText(this@TelaInicial, "Você ainda não possui os dados dos cursos. Conecte-se à Internet e reinicie o app para carregá-los.", Toast.LENGTH_LONG).show()
+                }
+                else isListReady = true
             }
 
         })
@@ -61,11 +65,11 @@ class TelaInicial : AppCompatActivity() {
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ApresentacaoFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ApresentacaoFragment(), "CURRENT").commit()
 
         bottomNav.setOnNavigationItemSelectedListener {
 
-            var selectedFragment :Fragment = ApresentacaoFragment()
+            var selectedFragment : Fragment? = null
 
             when (it.itemId) {
                 R.id.nav_apresentacao -> {
@@ -76,6 +80,9 @@ class TelaInicial : AppCompatActivity() {
                 }
                 R.id.nav_cursos -> {
                     if(isListReady) selectedFragment = CursosFragment()
+                    else {
+                        selectedFragment = supportFragmentManager.findFragmentByTag("CURRENT") as Fragment
+                    }
                 }
                 R.id.nav_sobre -> {
                     selectedFragment = SobreFragment()
@@ -83,7 +90,7 @@ class TelaInicial : AppCompatActivity() {
                 else -> selectedFragment = ApresentacaoFragment()
             }
 
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment, "CURRENT").commit()
             true
         }
     }
